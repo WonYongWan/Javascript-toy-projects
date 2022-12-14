@@ -1,0 +1,106 @@
+@font-face {
+  font-family: 'S-CoreDream-3Light';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+* {font-family: 'S-CoreDream-3Light';}
+button { display: flex; justify-content: center; align-items: center;}
+span {font-size: 18px !important;}
+span.none {display: none;}
+body {
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  height: 100vh; 
+  background-image: url("./images/bg.png"); 
+  background-size: cover; 
+  background-repeat: no-repeat;
+  overflow-y: hidden;
+}
+.wrap.minimization {
+  opacity: 0; transform: translateY(70%) scale(.3); transition: all .5s;
+}
+.wrap.minimization.minimizationOn {
+  opacity: 1; transform: translateY(0%) scale(1); transition: all .5s;
+}
+.wrap.maximize {width: 100vw; height: 100vh;}
+.wrap.close {opacity: 0; transition: .3s;}
+.wrap.none {display: none;}
+.wrap {
+  display: flex; 
+  flex-direction: column; 
+  width: 21vw; 
+  border: 1px solid rgba(0, 0, 0, .6); 
+  background: #F3F3F3;
+  box-sizing: border-box;
+  z-index: 999;
+}
+.wrap > header {display: flex; justify-content: end;}
+.wrap > header > button {border: unset; width: 3vw; height: 3.5vh; background: #F3F3F3;}
+.wrap > header > button:hover {background: #DBDBDB;}
+.wrap > header > button:last-child:hover {background: #E81123; color: #fff;}
+.wrap > input {flex: 1; border: none; background: #F3F3F3; font-size: 18px; text-align: right; padding-right: 10px;}
+.wrap > input:nth-child(2) {padding: 2.5vh 10px 0; font-size: 15px; color: #616161;}
+.wrap > input:nth-child(3) {font-size: 40px; font-weight: 700; padding: 1vh 10px 2.5vh;}
+.wrap.maximize > input:nth-child(2) {padding: 2.5vh 10px 0; font-size: 35px; color: #616161;}
+.wrap.maximize > input:nth-child(3) {font-size: 60px; font-weight: 700; padding: 1vh 10px 2.5vh;}
+.wrap > input:focus {outline: none;}
+.row {display: flex;}
+.wrap.maximize > .row > button {height: 11vh;}
+.row > button {
+  flex: 1; 
+  height: 7vh; 
+  background: #fff; 
+  border: 1px solid #E5E5E5;
+  border-bottom: 1px solid #CCCCCC;
+  margin: 1px;
+  font-size: 18px; 
+  font-weight: 500; 
+  border-radius: 5px;}
+.row > button:hover {background: #FCFCFC;}
+.row > button.delete,
+.row > button.operator {background: #F9F9F9;}
+.row > button.delete:hover,
+.row > button.operator:hover {background: #F6F6F6;}
+.row > button.result {background: #005A9E; color: #fff;}
+.row > button.result:hover {background: #196AA7;}
+footer {
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  height: 45px;
+  background: #D1E8F1;
+  width: 100vw;
+  justify-content: center;
+}
+footer > button {
+  width: 3vw;
+  border: unset;
+  background: #D1E8F1 url("./images/icon.png") no-repeat center;
+  transition: .1s;
+}
+footer > button:hover {background-color: #E3F1F6;}
+footer > button.on {
+  background-color: #E3F1F6;
+  position: relative;
+  transition: .3s;
+}
+footer > button.on:hover {
+  background-color: #fff;
+}
+footer > button.on::before {
+  display: block;
+  position: absolute;
+  content: "";
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+  width: 90%;
+  height: 2px;
+  background: #0078D7;
+  transition: width .1s;
+}
+footer > button.on:hover::before {
+  width: 100%;
+}
