@@ -7,9 +7,171 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
   <link rel="stylesheet" href="./main.css">
   <title>NumberBaseball</title>
+  <style>
+    .answerList {
+      position: absolute;
+      bottom: 50vh;
+      display: flex;
+      background: linear-gradient(#FFEA6F, #C3880D);
+      padding: 1vw;
+      border-radius: 10px;
+    }
+    .answerList > li {
+      cursor: pointer;
+      width: 5.1vw;
+      height: 15vh;
+      margin-left: .5vw;
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 5rem;
+      border-radius: 20px;
+      box-sizing: border-box;
+      transition: .3s;
+      background: linear-gradient(#cac9c1, #5a5958);
+      color: #b9b6b3;
+      text-shadow: 2px 2px 3px #747372;
+      border: 5px solid #747372;
+    }
+    .answerList > li:nth-child(1) {
+      margin-left: 0;
+    }
+    .numList {
+      position: absolute;
+      bottom: 0;
+      display: flex; 
+      overflow: hidden;
+    }
+    .numList > .num {
+      cursor: pointer;
+      width: 10.1vw;
+      height: 30vh;
+      margin-left: .5vw;
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 10rem;
+      border-radius: 20px;
+      box-sizing: border-box;
+      transition: .3s;
+    }
+    .numList > .num:nth-child(1) {
+      margin-left: 0;
+    }
+    .numList > .normal {
+      transform: translateY(20%);
+      background: linear-gradient(#FFEA6F, #C3880D);
+      color: #c38e1b;
+      text-shadow: 2px 2px 3px #9b7012;
+      border: 10px solid #c08a16;
+    }
+    .numList > .normal:hover {transform: translateY(10%);}
+    .numList > .choice {
+      transform: translateY(10%);
+      background: linear-gradient(#cac9c1, #5a5958);
+      color: #b9b6b3;
+      text-shadow: 2px 2px 3px #747372;
+      border: 10px solid #747372;
+      opacity: .8;
+    }
+    .numList > .choice:hover {transform: translateY(10%);}
+    
+  </style>
 </head>
 <body>
-  
+  <ul class="answerList">
+    <li class="choiceNum">1</li>
+    <li class="choiceNum">2</li>
+    <li class="choiceNum">3</li>
+    <li class="choiceNum">4</li>
+  </ul>
+  <ul class="numList">
+    <!-- <li class="num normal num-1">1</li>
+    <li class="num normal num-2">2</li>
+    <li class="num normal num-3">3</li>
+    <li class="num normal num-4">4</li>
+    <li class="num normal num-5">5</li>
+    <li class="num normal num-6">6</li>
+    <li class="num normal num-7">7</li>
+    <li class="num normal num-8">8</li>
+    <li class="num normal num-9">9</li> -->
+  </ul>
+
+  <script>
+
+    let answerList = document.querySelector('.answerList');
+    let numList = document.querySelector('.numList');
+
+    // 초기값
+    let init = [0, 0, 0, 0];
+    let result = init.map(elm => elm = Math.floor(Math.random() * 9 + 1));
+
+    // 유저에게 보이는 카드 목록
+    let numbers = [];
+    for(let i = 0; i < 9; i++) {
+      numList.innerHTML += `<li class="num num-${i + 1} normal">${i + 1}</li>`;
+    }
+
+    // 유저 입력 값
+    let answer = [];
+
+    // 유저 카드 선택
+    function userNumber(e) {
+      for(let target of e.target.classList) {
+        if(target === 'normal') {
+          if(answer.length < 4) {
+            e.target.classList.remove('normal');
+            e.target.classList.add('choice');
+            answer.push(parseInt(e.target.textContent));
+            answer = answer.filter((elm, index) => answer.indexOf(elm) === index);
+          }
+        }
+        if(target === 'choice') {
+          e.target.classList.remove('choice');
+          e.target.classList.add('normal');
+          for(let arrNum = 0; arrNum < answer.length; arrNum++) {
+            if(answer[arrNum] === parseInt(e.target.textContent)) {
+              answer = answer.filter((elm) => elm !== answer[arrNum])
+            }
+          }
+        }
+      }
+      test(e, answer);
+    } 
+
+    // 유저 선택 카드 목록
+    function test(e, answer) {
+      for(let target of e.target.classList) {
+        if(target === 'choice') {
+          for(let i of answer) {
+            if(i === parseInt(e.target.textContent)) {
+              answerList.innerHTML += `<li class='choiceNum'>${i}</li>`;
+            }
+          }
+        }
+        if(target === 'normal') {
+          let choiceNums = document.querySelectorAll('.choiceNum')
+          for(let choiceNum of choiceNums) {
+            if(choiceNum.textContent === e.target.textContent) {
+              choiceNum.remove();
+            }
+          }
+        }
+      }
+    }
+
+    let num = document.querySelectorAll('.num');
+    for(let numItem of num) {
+      numItem.addEventListener('click', userNumber);
+    }
+
+    
+    
+    
+
+  </script>
   <script src="./main.js"></script>
 </body>
 </html>
