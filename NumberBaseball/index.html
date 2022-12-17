@@ -8,15 +8,87 @@
   <link rel="stylesheet" href="./main.css">
   <title>NumberBaseball</title>
   <style>
-    .answerList {
+    #billboard {
+      display: flex;
+      position: relative;
+      flex-direction: column;
+      align-items: center;
+      width: 40vw;
+      background: radial-gradient(#0E1F3A 30%,#000 70%);
+      top: 3%;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      border-bottom-right-radius: 30px;
+      border-bottom-left-radius: 30px;
+      border: 2px solid #76746C;
+    }
+    #billboard::before {
+
+    }
+    #billboard > h1 {
+      text-align: center;
+      margin: 20px 0;
+      font-size: 80px;
+      color: #294066;
+      text-shadow: 0 5px 10px #000;
+      font-weight: 800;
+    }
+    #billboard > .score {
+      position: relative;
+      display: flex; 
+      justify-content: start;
+      width: 85%;
+      padding-left: 15%;
+      margin-top: 20px;
+    }
+    #billboard > .score::before {
       position: absolute;
+      color: rgb(226, 216, 216);
+      text-shadow: 2px 1px 3px rgb(132, 125, 125);
+      font-weight: 600;
+      left: 7%;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    #billboard > .score.turn::before {
+      content: "Turn";
+    }
+    #billboard > .score.strike::before {
+      content: "Strike";
+    }
+    #billboard > .score.ball::before {
+      content: "Ball";
+    }
+    #billboard > .score > li {
+      width: 20px;
+      height: 20px;
+      border-radius: 20px;
+      background: linear-gradient(#cac9c1, #5a5958);
+      margin-right: 5px;
+    }
+    #billboard > .score > li > span {
+      display: block;
+      width: 20px;
+      height: 20px;
+      border-radius: 20px;
+    }
+    #billboard > .score.turn > li > span {
+      background: linear-gradient(#ea2424, #8d0707);
+    }
+    #billboard > .score.strike > li > span {
+      background: linear-gradient(#63ea24, #078d29);
+    }
+    #billboard > .score.ball > li > span {
+      background: linear-gradient(#eada24, #8d8607);
+    }
+    .resultList {
       bottom: 50vh;
       display: flex;
-      background: linear-gradient(#FFEA6F, #C3880D);
+      margin-top: 10px;
       padding: 1vw;
       border-radius: 10px;
     }
-    .answerList > li {
+    .resultList > li {
       cursor: pointer;
       width: 5.1vw;
       height: 15vh;
@@ -34,7 +106,7 @@
       text-shadow: 2px 2px 3px #747372;
       border: 5px solid #747372;
     }
-    .answerList > li:nth-child(1) {
+    .resultList > li:nth-child(1) {
       margin-left: 0;
     }
     .numList {
@@ -44,6 +116,7 @@
       overflow: hidden;
     }
     .numList > .num {
+      user-select: none;
       cursor: pointer;
       width: 10.1vw;
       height: 30vh;
@@ -81,12 +154,61 @@
   </style>
 </head>
 <body>
-  <ul class="answerList">
-    <li class="choiceNum">1</li>
-    <li class="choiceNum">2</li>
-    <li class="choiceNum">3</li>
-    <li class="choiceNum">4</li>
-  </ul>
+  <div id="billboard">
+    <h1>Number Baseball</h1>
+    <ul class="score turn">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+    <ul class="score strike">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+    <ul class="score ball">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+    <ul class="resultList">
+      <!-- <li class="choiceNum">1</li>
+      <li class="choiceNum">2</li>
+      <li class="choiceNum">3</li>
+      <li class="choiceNum">4</li> -->
+    </ul>
+  </div>
+  <style>
+    .btnList {
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      position: absolute; 
+      bottom: 35%;
+    }
+    .throw.none {display: none;}
+    .throw {
+      cursor: pointer;
+      width: 5vw;
+      background: #000;
+      height: 10vh;
+      color: #fff;
+      font-size: 1.5rem;
+      
+    }
+  </style>
+ <div class="btnList">
+  <button class="throw none">Throw</button>
+ </div>
   <ul class="numList">
     <!-- <li class="num normal num-1">1</li>
     <li class="num normal num-2">2</li>
@@ -101,12 +223,20 @@
 
   <script>
 
-    let answerList = document.querySelector('.answerList');
+    let resultList = document.querySelector('.resultList');
     let numList = document.querySelector('.numList');
+    let throwBtn = document.querySelector('.throw');
 
-    // 초기값
-    let init = [0, 0, 0, 0];
-    let result = init.map(elm => elm = Math.floor(Math.random() * 9 + 1));
+    // 정답
+    let answer = [];
+    for(let i = 0; i < 4; i++) {
+      let random = Math.floor(Math.random() * 9 + 1);
+      if(answer.indexOf(random) === -1) {
+        answer.push(random);
+      } else {
+        i--;
+      }
+    }
 
     // 유저에게 보이는 카드 목록
     let numbers = [];
@@ -115,39 +245,44 @@
     }
 
     // 유저 입력 값
-    let answer = [];
+    let result = [];
 
     // 유저 카드 선택
     function userNumber(e) {
       for(let target of e.target.classList) {
         if(target === 'normal') {
-          if(answer.length < 4) {
+          if(result.length < 4) {
             e.target.classList.remove('normal');
             e.target.classList.add('choice');
-            answer.push(parseInt(e.target.textContent));
-            answer = answer.filter((elm, index) => answer.indexOf(elm) === index);
+            result.push(parseInt(e.target.textContent));
+            result = result.filter((elm, index) => result.indexOf(elm) === index);
           }
         }
         if(target === 'choice') {
           e.target.classList.remove('choice');
           e.target.classList.add('normal');
-          for(let arrNum = 0; arrNum < answer.length; arrNum++) {
-            if(answer[arrNum] === parseInt(e.target.textContent)) {
-              answer = answer.filter((elm) => elm !== answer[arrNum])
+          for(let arrNum = 0; arrNum < result.length; arrNum++) {
+            if(result[arrNum] === parseInt(e.target.textContent)) {
+              result = result.filter((elm) => elm !== result[arrNum])
             }
           }
         }
       }
-      test(e, answer);
+      if(result.length === 4) {
+        throwBtn.classList.remove('none');
+      } else {
+        throwBtn.classList.add('none');
+      }
+      userNumList(e);
     } 
 
     // 유저 선택 카드 목록
-    function test(e, answer) {
+    function userNumList(e) {
       for(let target of e.target.classList) {
         if(target === 'choice') {
-          for(let i of answer) {
+          for(let i of result) {
             if(i === parseInt(e.target.textContent)) {
-              answerList.innerHTML += `<li class='choiceNum'>${i}</li>`;
+              resultList.innerHTML += `<li class='choiceNum'>${i}</li>`;
             }
           }
         }
@@ -162,11 +297,74 @@
       }
     }
 
+    // 유저 선택 카드 목록 제출 및 비교
+    let turn = 0;
+    function numCompare() {
+      for(let numItem of num) {
+        numItem.classList.remove('choice');
+        numItem.classList.add('normal');
+      }
+      resultList.innerHTML = '';
+      turn += 1;
+      if(turn > 9) {
+        alert('게임종료')
+      }
+      let strike = 0;
+      let ball = 0;
+      throwBtn.classList.add('none');
+      for(let i = 0; i < answer.length; i++) {
+        const index = result.indexOf(answer[i]);
+        if(index > -1) {
+          if(index === i) {
+            strike += 1;
+            if(strike === 4) {
+              alert('게임 승리');
+            }
+          } else {
+            ball += 1;
+          }
+        }
+      }
+      console.log(result)
+      result = [];
+      gameScore(turn, strike, ball);
+    }
+
+    // 전광판 스코어 정보
+    let scoreTurn = document.querySelectorAll('.score.turn > li');
+    let scoreStrike = document.querySelectorAll('.score.strike > li');
+    let scoreBall = document.querySelectorAll('.score.ball > li');
+
+    function gameScore(turn, strike, ball) {
+      let span = document.createElement('span');
+      for(let i = 0; i < turn; i++) {
+        scoreTurn[i].append(span)
+      }
+      for(let i of scoreStrike) {
+        i.innerHTML = '';
+      }
+      for(let i = 0; i < strike; i++) {
+        scoreStrike[i].innerHTML += `<span></span>`;
+      }
+      for(let i of scoreBall) {
+        i.innerHTML = '';
+      }
+      for(let i = 0; i < ball; i++) {
+        scoreBall[i].innerHTML += `<span></span>`;
+      }
+
+      console.log(answer);
+      console.log(turn);
+      console.log(strike);
+      console.log(ball);
+    }
+
+    // 
     let num = document.querySelectorAll('.num');
     for(let numItem of num) {
       numItem.addEventListener('click', userNumber);
     }
-
+    throwBtn.addEventListener('click', numCompare);
     
     
     

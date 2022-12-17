@@ -12,8 +12,7 @@ body {
   align-items: center;
   background: url("./images/bg.png") no-repeat;
   background-size: cover;
+  background-position: center;
   height: 100vh; 
-  background-size: cover; 
-  background-repeat: no-repeat;
   overflow: hidden;
 }
