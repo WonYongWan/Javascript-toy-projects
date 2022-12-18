@@ -1,7 +1,10 @@
 let resultList = document.querySelector('.resultList');
 let numList = document.querySelector('.numList');
-let throwBtn = document.querySelector('.throw');
-let billBoard = document.querySelector('#billBoard')
+let submitBtn = document.querySelector('.submit');
+let billBoard = document.querySelector('#billBoard');
+let scoreBoard = document.querySelector('#scoreBoard');
+let baseball = document.querySelector('.baseball');
+let scoreText = document.querySelector('.scoreText')
 
 // 정답
 let answer = [];
@@ -45,11 +48,11 @@ function userNumber(e) {
     }
   }
   if(result.length === 4) {
-    billBoard.classList.add('throw');
-    throwBtn.classList.remove('none');
+    billBoard.classList.add('submit');
+    submitBtn.classList.remove('none');
   } else {
-    billBoard.classList.remove('throw');
-    throwBtn.classList.add('none');
+    billBoard.classList.remove('submit');
+    submitBtn.classList.add('none');
   }
   userNumList(e);
 } 
@@ -78,19 +81,25 @@ function userNumList(e) {
 // 유저 선택 카드 목록 제출 및 비교
 let turn = 0;
 function numCompare() {
-  billBoard.classList.remove('throw');
+  window.removeEventListener('mouseover', submitAni);
+  billBoard.style.transform = 'translateY(-200px)';
+  setTimeout(() => {
+    window.addEventListener('mouseover', submitAni);
+    resultList.innerHTML = '';
+  }, 100)
   for(let numItem of num) {
     numItem.classList.remove('choice');
     numItem.classList.add('normal');
   }
-  resultList.innerHTML = '';
   turn += 1;
   if(turn > 9) {
-    alert('게임종료')
+    setTimeout(() => {
+      alert('게임종료')
+    }, 3000);
   }
   let strike = 0;
   let ball = 0;
-  throwBtn.classList.add('none');
+  submitBtn.classList.add('none');
   for(let i = 0; i < answer.length; i++) {
     const index = result.indexOf(answer[i]);
     if(index > -1) {
@@ -106,7 +115,39 @@ function numCompare() {
   }
   gameScore(turn, strike, ball);
   gameRecord(result);
+  baseballAni(strike, ball);
   result = [];
+}
+// 제출 후 야구공 애니메이션
+function baseballAni(strike, ball) {
+  if(strike === 0 && ball === 0) {
+    baseball.classList.add('ani2');
+    setTimeout(() => {
+      scoreText.innerHTML = 'Safety!';
+    }, 800);
+    setTimeout(() => {
+      baseball.classList.remove('ani2');
+      setTimeout(() => {
+        scoreText.innerHTML = '';
+      }, 1000)
+    }, 1200);
+  } else {
+    baseball.classList.add('ani1');
+    setTimeout(() => {
+      scoreText.innerHTML = `<span>${strike}</span> Strike  <span>${ball}</span> Ball`;
+    }, 800);
+    setTimeout(() => {
+      baseball.classList.remove('ani1');
+      setTimeout(() => {
+        scoreText.innerHTML = '';
+      }, 1000);
+    }, 1200);
+  }
+  setTimeout(() => {
+    numList.classList.remove('hide');
+    billBoard.classList.remove('submit');
+    billBoard.style.transform = 'translateY(0)';
+  }, 2000)
 }
 
 // 전광판 스코어 정보
@@ -140,6 +181,7 @@ let scoreTurnWrap = document.querySelector('.score.turn');
 let scoreStrikeWrap = document.querySelector('.score.strike');
 let scoreBallWrap = document.querySelector('.score.ball');
 
+
 function gameRecord(result) {
   let liClone = recordLi.cloneNode(true);
   let turnClone = scoreTurnWrap.cloneNode(true);
@@ -162,17 +204,26 @@ function gameRecord(result) {
 const recordScroll = (recordLiAll) => (e) => {
   for(let i of recordLiAll) {
     i.style.opacity = '.3';
-    if(record.scrollTop >= i.offsetTop - 130 && record.scrollTop <= i.offsetTop + 170) {
+    if(record.scrollTop >= i.offsetTop - 130 && record.scrollTop <= i.offsetTop + 30) {
       i.style.opacity = '1';
     }
   }
 }
 
-
+function submitAni(e) {
+  if(e.target.className === 'submit') {
+    numList.classList.add('hide');
+    scoreBoard.classList.add('submit');
+  } else {
+    numList.classList.remove('hide');
+    scoreBoard.classList.remove('submit');
+  }
+}
 
 // 
 let num = document.querySelectorAll('.num');
 for(let numItem of num) {
   numItem.addEventListener('click', userNumber);
 }
-throwBtn.addEventListener('click', numCompare);
+submitBtn.addEventListener('click', numCompare);
+window.addEventListener('mouseover', submitAni);

@@ -9,6 +9,8 @@
   <title>Number Baseball</title>
 </head>
 <body>
+  <div class="baseball"></div>
+  <div class="scoreText"></div>
   <div id="billBoard">
     <div id="scoreBoard">
       <h1>SCORE BOARD</h1>
@@ -50,29 +52,7 @@
       </ul>
     </div>
   </div>
-  
-  <style>
-    .btnList {
-      display: flex; 
-      justify-content: center; 
-      align-items: center; 
-      position: absolute; 
-      bottom: 35%;
-    }
-    button.throw.none {display: none;}
-    button.throw {
-      cursor: pointer;
-      width: 5vw;
-      background: #000;
-      height: 10vh;
-      color: #fff;
-      font-size: 1.5rem;
-      
-    }
-  </style>
- <div class="btnList">
-  <button class="throw none">Throw</button>
- </div>
+  <button class="submit none">SUBMIT</button>
   <ul class="numList">
     <!-- <li class="num normal num-1">1</li>
     <li class="num normal num-2">2</li>
