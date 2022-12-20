@@ -1,0 +1,53 @@
+@font-face {
+  font-family: 'S-CoreDream-3Light';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+* {font-family: 'S-CoreDream-3Light'; user-select: none; box-sizing: border-box;}
+body {background: #DCF2FF; flex-direction: column; display: flex; justify-content: center; align-items: center; height: 100vh;}
+body > h1 {
+  top: 5%;
+  position: absolute;
+  font-size: 150px; 
+  color: #5384a0; 
+  font-weight: 900; 
+}
+#ballBox {
+  position: relative;
+  width: 1000px;
+  height: 200px;
+  background: #ffffff;
+  border-radius: 150px;
+  padding: 50px;
+}
+#ballBox::before {
+  position: absolute;
+  top: 50%;
+  right: 173px;
+  transform: translateY(-60%);
+  font-weight: 800;
+  content: "+";
+  font-size: 70px;
+  line-height: 70px;
+  color: #969696;
+}
+#ballBox > div {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 100px;
+  border-radius: 100px;
+  border: 1px solid #000;
+  font-size: 50px;
+  font-weight: 800;
+  margin-left: 20px;
+}
+#ballBox > div.yellow {border: 3px solid #E5C638; background: #F8C50A;}
+#ballBox > div.blue {border: 3px solid #7ABBD8; background: #6EC6F3;}
+#ballBox > div.red {border: 3px solid #DA7978; background: #F87A77;}
+#ballBox > div.gray {border: 3px solid #A4A4A4; background: #B2B2B2;}
+#ballBox > div.green {border: 3px solid #B0C763; background: #B3D842;}
+#ballBox > div:first-child {margin-left: 0;}
+#ballBox > div.bonus {margin-left: 100px;}
