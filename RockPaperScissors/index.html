@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
+  <link rel="stylesheet" href="./main.css">
+  <title>Rock Paper Scissors</title>
+</head>
+<body>
+  <div id="victory" class="result none"><P>Victory</P><div class="reset">RESET</div></div>
+  <div id="defeat" class="result none"><P>Defeat</P><div class="reset">RESET</div></div>
+  <div id="computerScore" class="score">0</div>
+  <div class="main">
+    <div class="computer"></div>
+    <div class="btnWrap"> 
+      <button id="rock" class="btn"></button>
+      <button id="paper" class="btn"></button>
+      <button id="scissors" class="btn"></button>
+    </div>
+  </div>
+  <div id="myScore" class="score">0</div>
+  <script src="./main.js"></script>
+</body>
+</html>

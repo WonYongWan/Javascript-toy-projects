@@ -1,0 +1,109 @@
+body {
+  background: #0047FE;
+  height: 100vh; 
+  display: flex;
+  align-items: center; 
+  justify-content: center;
+}
+.result {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, .9);
+  z-index: 999;
+}
+.result.none {display: none;}
+.result > P {
+  font-size: 150px;
+  color: #fff;
+  font-weight: 900;
+}
+.result > div.reset {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  width: 200px;
+  height: 50px;
+  background: rgb(50, 48, 48);
+  font-size: 30px;
+  font-weight: 800;
+  color: #fff;
+  border: 1px solid #fff;
+  transition: .1s;
+  margin-top: 200px;
+}
+.result > div.reset:hover {
+  background: #fff;
+  border: 1px solid rgb(50, 48, 48);
+  color: rgb(50, 48, 48);
+}
+.main {
+  display: flex;
+  flex-direction: column; 
+  align-items: center; 
+  justify-content: center;
+} 
+.computer {
+  width: 900px;
+  border-radius: 30px;
+  height: 350px;
+  margin-bottom: 50px;
+  background: #fff no-repeat center;
+}
+.computer.on {
+  background: rgb(187 51 51) no-repeat center;
+}
+button {
+  cursor: pointer;
+  display: inline-block;
+  width: 250px;
+  height: 250px;
+  border: unset;
+  background: rgb(255, 255, 255);
+  border-radius: 30px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  margin-left: 60px;
+  filter: blur(2px);
+  transition: .1s;
+}
+button.on {
+  filter: blur(0px); 
+  transform: scale(1.1); 
+}
+button:hover {filter: blur(0px);}
+button:first-child {margin-left: 0;}
+button#rock {background-image: url("./images/rock.png");}
+button#paper {background-image: url("./images/paper.png");}
+button#scissors {background-image: url("./images/scissors.png");}
+
+.score {
+  position: relative;
+  width: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 200px;
+  color: #fff;
+  font-weight: 800;
+}
+.score::before {
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 30px;
+}
+.score#computerScore::before {
+  content: "COMPUTER";
+}
+.score#myScore::before {
+  content: "ME";
+}
