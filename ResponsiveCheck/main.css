@@ -1,0 +1,77 @@
+@font-face {
+  font-family: 'GongGothicMedium';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/GongGothicMedium.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+* {user-select: none;}
+body {
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+#screen {
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 60px;
+  font-size: 200px;
+  font-weight: 800;
+  width: 500px;
+  height: 800px;
+  border-radius: 30px;
+}
+#screen.pending {background: #F0DB4F; color: #000;}
+#screen.ready {background: rgb(209, 43, 43); color: #fff;}
+#screen.action {background: rgb(43, 90, 209); color: #fff;}
+#screen > span {
+  font-family: 'GongGothicMedium';
+  position: absolute;
+  top: 5%;
+  font-size: 40px;
+  transition: .7s;
+  opacity: 1;
+}
+#result {
+  font-family: 'GongGothicMedium';
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-left: 60px;
+  background: #fff;
+  border-radius: 30px;
+  width: 500px;
+  height: 800px;
+  border-radius: 30px;
+}
+#result p {
+  text-align: center;
+  font-size: 70px;
+  font-weight: 700;
+  margin-top: 80px;
+}
+#result p > span {
+  font-size: 40px;
+  display: block;
+  margin-top: 40px;
+  font-weight: 500;
+}
+#result > ul {
+  margin-top: 30px;
+  font-size: 40px;
+}
+#result > ul > li {
+  padding-right: 50px;
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+#result > ul > li > div {
+  display: inline-block;
+}
+#result > ul > li > div:first-child {margin-right: 50px; width: 100px; text-align: right;}
+#result > ul > li:first-child > div:last-child {color: red;}
