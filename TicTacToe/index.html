@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
+  <link rel="stylesheet" href="./main.css">
+  <title>Tic Tac Toe</title>
+  <style>
+    body {
+      height: 100vh;
+    }
+    header {
+      height: 20%;
+    }
+    #main {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 70%;
+      background: #14BDAC;
+    }
+    #main > table {
+      width: 450px;
+      height: 450px;
+    }
+    #main > table tr td {
+      min-width: 150px;
+      height: 150px;
+      text-align: center;
+      font-size: 150px;
+      line-height: 134px;
+    }
+    #main > table tr td:nth-child(2) {
+      border-left: 7px solid #0DA192;
+      border-right: 7px solid #0DA192;
+    }
+    #main > table tr:nth-child(1) td,
+    #main > table tr:nth-child(2) td {
+      border-bottom: 7px solid #0DA192;
+    }
+    footer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 10%;
+    }
+    footer > #reStart {
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+      font-family: 'S-CoreDream-3Light';
+      background: unset;
+      border: unset;
+      color: #14BDAC;
+      font-weight: 900;
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+  <header></header>
+  <div id="main">
+    <!-- <table>
+      <tbody>
+        <tr>
+          <td>O</td>
+          <td>X</td>
+          <td>X</td>
+        </tr>
+        <tr>
+          <td>X</td>
+          <td>X</td>
+          <td>X</td>
+        </tr>
+        <tr>
+          <td>X</td>
+          <td>X</td>
+          <td>X</td>
+        </tr>
+      </tbody>
+    </table> -->
+  </div>
+  <footer>
+    <button id="reStart">게임 다시 시작하기</button>
+  </footer>
+  <script>
+    const $main = document.querySelector('#main');
+    const $table = document.createElement('table');
+    const $tbody = document.createElement('tbody');
+    let turn = 'O';
+
+    // 3 x 3 배열 만들기
+    const data = [];
+    for(let i = 0; i < 3; i++) {
+      data.push([]);
+    }
+    // 3 x 3 테이블 만들기
+    for(let i = 0; i < 3; i++) {
+      const $tr = document.createElement('tr');
+      $tbody.append($tr);
+      for(let j = 0; j < 3; j++) {
+        const $td = document.createElement('td');
+        $td.addEventListener('click', tdClickEvent)
+        $tr.append($td)
+      }
+    }
+    $table.append($tbody);
+    $main.append($table);
+
+    function tdClickEvent(e) {
+      if(!e.target.textContent && turn === 'O') {
+        e.target.textContent = turn;
+        e.target.style.color = '#F2EBD3';
+        turn = 'X';
+      } else if(!e.target.textContent && turn === 'X') {
+        e.target.textContent = turn;
+        e.target.style.color = '#545454';
+        turn = 'O';
+      }
+    }
+  </script>
+  <script src="./main.js"></script>
+</body>
+</html>
