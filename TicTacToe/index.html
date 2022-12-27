@@ -89,35 +89,128 @@
     const $main = document.querySelector('#main');
     const $table = document.createElement('table');
     const $tbody = document.createElement('tbody');
-    let turn = 'O';
+    let turn = 'X';
 
-    // 3 x 3 배열 만들기
-    const data = [];
-    for(let i = 0; i < 3; i++) {
-      data.push([]);
-    }
     // 3 x 3 테이블 만들기
+    const rows = [];
     for(let i = 0; i < 3; i++) {
+      const cells = [];
       const $tr = document.createElement('tr');
       $tbody.append($tr);
       for(let j = 0; j < 3; j++) {
         const $td = document.createElement('td');
-        $td.addEventListener('click', tdClickEvent)
+        cells.push($td)
         $tr.append($td)
       }
+      rows.push(cells);
     }
+    $table.addEventListener('click', tdClickEvent)
     $table.append($tbody);
     $main.append($table);
 
     function tdClickEvent(e) {
-      if(!e.target.textContent && turn === 'O') {
-        e.target.textContent = turn;
-        e.target.style.color = '#F2EBD3';
-        turn = 'X';
-      } else if(!e.target.textContent && turn === 'X') {
-        e.target.textContent = turn;
+      let myTurnIndex;
+      let computerTurnIndex;
+
+      if(e.target.textContent) return;
+      e.target.textContent = turn;
+      checkWinner(e.target);
+      if(turn === 'X') {
         e.target.style.color = '#545454';
+        let test = rows.flat();
+        for(let i = 0; i < test.length; i++) {
+          if(test[i] === e.target) {
+            myTurnIndex = i;
+          }computerTurnIndex;
+        }
         turn = 'O';
+      }
+      if(turn === 'O') {
+        const emptyCells = rows.flat().filter(v => !v.textContent);
+        const randomCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
+        // randomCell.innerText = 'X';
+        // randomCell.style.color = '#F2EBD3';
+        
+        let test = rows.flat();
+        if(!test[4].innerText) {
+          test[4].innerText = 'O';
+          computerTurnIndex = 4;
+        } else if(!test[myTurnIndex - 1].innerText && myTurnIndex - 1 > -1) {
+          test[myTurnIndex - 1].innerText = 'O';
+        } else if(!test[myTurnIndex + 1].innerText && myTurnIndex + 1 < 10) {
+          test[myTurnIndex + 1].innerText = 'O';
+        } else {
+          randomCell.innerText = 'O';
+        }
+        // test[myTurnIndex - 1].innerText = 'X'
+        turn = 'X';computerTurnIndex;
+      }
+
+      // if(turn === 'O') {
+      //   e.target.style.color = '#F2EBD3';
+      //   turn = 'X';
+      //   computerTurn();
+      // } 
+    }
+
+    // function computerTurn() {
+    //   let computer = rows.flat();
+    //   let random = Math.floor(Math.random() * 8);
+    //   console.log(random)
+
+    //   if(!computer[4].innerText) {
+    //     computer[4].style.color = '#545454';
+    //     computer[4].innerText = 'X';
+    //     turn = 'O';
+    //   }
+
+    //   console.log(rows[1][1].innerText )
+        
+    // }
+
+    function checkWinner(target) {
+      let rowIndex;
+      let cellIndex;
+      rows.forEach((row, ri) => {
+        row.forEach((cell, ci) => {
+          if(cell === target) {
+            rowIndex = ri;
+            cellIndex = ci;
+          }
+        });
+      });
+      let hasWinner = false;
+      if(
+        rows[rowIndex][0].innerText === turn &&
+        rows[rowIndex][1].innerText === turn &&
+        rows[rowIndex][2].innerText === turn
+      ) {
+        hasWinner = true;
+      }
+      if(
+        rows[0][cellIndex].innerText === turn &&
+        rows[1][cellIndex].innerText === turn &&
+        rows[2][cellIndex].innerText === turn
+      ) {
+        hasWinner = true;
+      }
+      if(
+        rows[0][0].innerText === turn &&
+        rows[1][1].innerText === turn &&
+        rows[2][2].innerText === turn
+      ) {
+        hasWinner = true;
+      }
+      if(
+        rows[0][2].innerText === turn &&
+        rows[1][1].innerText === turn &&
+        rows[2][0].innerText === turn
+      ) {
+        hasWinner = true;
+      }
+
+      if(hasWinner === true) {
+        console.log('빙고')
       }
     }
   </script>
