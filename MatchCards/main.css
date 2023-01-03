@@ -1,0 +1,78 @@
+@font-face {
+  font-family: 'GongGothicMedium';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/GongGothicMedium.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+* {user-select: none;}
+body {
+  position: relative;
+  background: radial-gradient(#0F8F38, #004A1F);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+#wrap {
+  width: 700px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.card {
+  position: relative;
+  cursor: pointer;
+  width: calc(25% - 20px);
+  height: 240px;
+  margin: 10px;
+  transition: .3s;
+  transform-style: preserve-3d;
+  /* test */
+  transform: rotateY(180deg);
+}
+.card > .front {
+  background: url("./images/card-back.png") no-repeat center;
+  transition: .3s;
+  background-size: cover;
+}
+.card > .back {
+  transform: rotateY(180deg);
+  box-sizing: border-box;
+  border: 2px solid #000;
+}
+.card > .front,
+.card > .back {
+  cursor: pointer;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+#success {
+  display: none;
+  position: absolute;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, .7);
+  align-items: center;
+  justify-content: center;
+}
+#success.on {display: flex;}
+#success > p {
+  font-family: 'GongGothicMedium';
+  color: #fff;
+  font-size: 70px;
+  margin-bottom: 50px;
+}
+#success > #reset {
+  cursor: pointer;
+  font-family: 'GongGothicMedium';
+  width: 200px;
+  height: 50px;
+  font-size: 18px;
+  transition: .1s;
+}
+#success > #reset:hover {
+  background: rgb(52, 51, 51);
+  color: #fff;
+}
