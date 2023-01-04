@@ -26,8 +26,6 @@ body {
   margin: 10px;
   transition: .3s;
   transform-style: preserve-3d;
-  /* test */
-  transform: rotateY(180deg);
 }
 .card > .front {
   background: url("./images/card-back.png") no-repeat center;
@@ -37,7 +35,10 @@ body {
 .card > .back {
   transform: rotateY(180deg);
   box-sizing: border-box;
-  border: 2px solid #000;
+  background: #fff;
+  background-size: 80%;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 .card > .front,
 .card > .back {

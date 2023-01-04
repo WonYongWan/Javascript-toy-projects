@@ -1,6 +1,12 @@
 const $wrap = document.querySelector('#wrap');
 const $success = document.querySelector('#success');
 
+const banana = 'url("./images/banana.png")';
+const grape = 'url("./images/grape.png")';
+const peach = 'url("./images/peach.png")';
+const pineapple = 'url("./images/pineapple.png")';
+const strawberry = 'url("./images/Strawberry.png")';
+const watermelon = 'url("./images/watermelon.png")';
 let targetElms = [];
 let flag = 0;
 let score = 0;
@@ -12,8 +18,8 @@ let totalTime;
 function createCards() {
   $wrap.removeEventListener('click', cardClickEvent);
   let numOfCards = 0;
-  let backgroundColor = ['yellow', 'red', 'blue', 'white', 'gray', 'green'];
-  let backgroundColorClone = backgroundColor.concat(backgroundColor).sort();
+  let backgroundImg = [banana, grape, peach, pineapple, strawberry, watermelon];
+  let backgroundImgClone = backgroundImg.concat(backgroundImg).sort();
   while(numOfCards < 12) {
     numOfCards++;
     $wrap.innerHTML += '<div class="card"><div class="front"></div><div class="back"></div></div>';
@@ -23,10 +29,10 @@ function createCards() {
   }
   let cards = document.querySelectorAll('.card');
   cards.forEach(elm => {
-    let random = Math.floor(Math.random() * backgroundColorClone.length);
-    let randomColor = backgroundColorClone[random];
-    backgroundColorClone.splice(random, 1)
-    elm.style.background = randomColor;
+    let random = Math.floor(Math.random() * backgroundImgClone.length);
+    let randomImg = backgroundImgClone[random];
+    backgroundImgClone.splice(random, 1);
+    elm.lastChild.style.backgroundImage = randomImg;
   });
   setTimeout(() => {
     const cardAnswerInfo = setInterval(() => {
@@ -63,11 +69,12 @@ function cardClickEvent(e) {
       targetElm.style.transform = '';
     }
     if(targetElms.length === 2) {
-      if(targetElms[0].style.background === targetElms[1].style.background) {
+      console.log(targetElms[0].lastChild.style.backgroundImage)
+      if(targetElms[0].lastChild.style.backgroundImage === targetElms[1].lastChild.style.backgroundImage) {
         score++;
       }
       setTimeout(() => {
-        if(targetElms[0].style.background !== targetElms[1].style.background) {
+        if(targetElms[0].lastChild.style.backgroundImage !== targetElms[1].lastChild.style.backgroundImage) {
           targetElms[0].style.transform = '';
           targetElms[1].style.transform = '';
         }
@@ -79,13 +86,11 @@ function cardClickEvent(e) {
   if(score === 6) {
     if(!endTime) endTime = new Date();
     totalTime = ((endTime - startTime) / 1000).toFixed(1);
-    setTimeout(() => {
-      $success.classList.add('on');
-      $success.innerHTML += `<p>${totalTime}초 걸렸습니다!</p>`;
-      $success.innerHTML += '<button id="reset">RESET</button>';
-      const $reset = document.querySelector('#reset');
-      $reset.addEventListener('click', gameReset);
-    }, 1000);
+    $success.classList.add('on');
+    $success.innerHTML += `<p>${totalTime}초 걸렸습니다!</p>`;
+    $success.innerHTML += '<button id="reset">RESET</button>';
+    const $reset = document.querySelector('#reset');
+    $reset.addEventListener('click', gameReset);
   }
 }
 
