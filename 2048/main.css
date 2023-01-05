@@ -1,0 +1,178 @@
+@font-face {
+  font-family: 'GongGothicMedium';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/GongGothicMedium.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+* {box-sizing: border-box; user-select: none; font-family: 'GongGothicMedium';}
+body {background: #FAF8EF;}
+#basic-info {
+  margin: 0 auto;
+  margin-top: 10vh;
+  display: flex;
+  justify-content: space-between;
+  width: 500px;
+  margin-bottom: 20px;
+}
+#basic-info > h1 {font-family: 'GongGothicMedium'; font-size: 70px; font-weight: bold; color: #776e65;}
+#basic-info > #score-wrap {display: flex;}
+#score-wrap > .score-box,
+#score-wrap > .best-box {
+  font-family: 'GongGothicMedium';
+  position: relative;
+  display: block;
+  background: #bbada0;
+  padding: 15px 25px;
+  font-size: 25px;
+  font-weight: bold;
+  border-radius: 3px;
+  color: white;
+  text-align: center;
+}
+#game-wrap {width: 500px; height: 500px; position: relative; margin: 0 auto;}
+#message {position: absolute;}
+#grid-container {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: #BBADA0;
+  border-radius: 6px;
+  padding: 15px;
+}
+.row {display: flex; margin-bottom: 15px;}
+.row:last-child {margin-bottom: 0;}
+.row > .cell {width: 106.25px; height: 106.25px; border-radius: 3px; margin-right: 15px; background: rgba(238, 228, 218, 0.35);}
+.row > .cell:last-child {margin-right: 0;}
+#tile-container {position: absolute;} 
+.tile {position: absolute; width: 107px; height: 107px; transition: .1s;}
+.tile.tile-merged {animation-duration: .2s; animation-timing-function: ease-in-out;}
+.tile.tile-position-1-1.tile-merged {animation-name: mergeTileAni-1-1;}
+.tile.tile-position-1-2.tile-merged {animation-name: mergeTileAni-1-2;}
+.tile.tile-position-1-3.tile-merged {animation-name: mergeTileAni-1-3;}
+.tile.tile-position-1-4.tile-merged {animation-name: mergeTileAni-1-4;}
+.tile.tile-position-2-1.tile-merged {animation-name: mergeTileAni-2-1;}
+.tile.tile-position-2-2.tile-merged {animation-name: mergeTileAni-2-2;}
+.tile.tile-position-2-3.tile-merged {animation-name: mergeTileAni-2-3;}
+.tile.tile-position-2-4.tile-merged {animation-name: mergeTileAni-2-4;}
+.tile.tile-position-3-1.tile-merged {animation-name: mergeTileAni-3-1;}
+.tile.tile-position-3-2.tile-merged {animation-name: mergeTileAni-3-2;}
+.tile.tile-position-3-3.tile-merged {animation-name: mergeTileAni-3-3;}
+.tile.tile-position-3-4.tile-merged {animation-name: mergeTileAni-3-4;}
+.tile.tile-position-4-1.tile-merged {animation-name: mergeTileAni-4-1;}
+.tile.tile-position-4-2.tile-merged {animation-name: mergeTileAni-4-2;}
+.tile.tile-position-4-3.tile-merged {animation-name: mergeTileAni-4-3;}
+.tile.tile-position-4-4.tile-merged {animation-name: mergeTileAni-4-4;}
+@keyframes mergeTileAni-1-1 {0% {transform: translate(15px, 15px) scale(1.2);} 100% {transform: translate(15px, 15px) scale(1);}}
+@keyframes mergeTileAni-1-2 {0% {transform: translate(136.25px, 15px) scale(0);} 100% {transform: translate(136.25px, 15px) scale(1);}}
+@keyframes mergeTileAni-1-3 {0% {transform: translate(257.5px, 15px) scale(0);} 100% {transform: translate(257.5px, 15px) scale(1);}}
+@keyframes mergeTileAni-1-4 {0% {transform: translate(378.75px, 15px) scale(0);} 100% {transform: translate(378.75px, 15px) scale(1);}}
+@keyframes mergeTileAni-2-1 {0% {transform: translate(15px, 136.25px) scale(0);} 100% {transform: translate(15px, 136.25px) scale(1);}}
+@keyframes mergeTileAni-2-2 {0% {transform: translate(136.25px, 136.25px) scale(0);} 100% {transform: translate(136.25px, 136.25px) scale(1);}}
+@keyframes mergeTileAni-2-3 {0% {transform: translate(257.5px, 136.25px) scale(0);} 100% {transform: translate(257.5px, 136.25px) scale(1);}}
+@keyframes mergeTileAni-2-4 {0% {transform: translate(378.75px, 136.25px) scale(0);} 100% {transform: translate(378.75px, 136.25px) scale(1);}}
+@keyframes mergeTileAni-3-1 {0% {transform: translate(15px, 257.5px) scale(0);} 100% {transform: translate(15px, 257.5px) scale(1);}}
+@keyframes mergeTileAni-3-2 {0% {transform: translate(136.25px, 257.5px) scale(0);} 100% {transform: translate(136.25px, 257.5px) scale(1);}}
+@keyframes mergeTileAni-3-3 {0% {transform: translate(257.5px, 257.5px) scale(0);} 100% {transform: translate(257.5px, 257.5px) scale(1);}}
+@keyframes mergeTileAni-3-4 {0% {transform: translate(378.75px, 257.5px) scale(0);} 100% {transform: translate(378.75px, 257.5px) scale(1);}}
+@keyframes mergeTileAni-4-1 {0% {transform: translate(15px, 378.75px) scale(0);} 100% {transform: translate(15px, 378.75px) scale(1);}}
+@keyframes mergeTileAni-4-2 {0% {transform: translate(136.25px, 378.75px) scale(0);} 100% {transform: translate(136.25px, 378.75px) scale(1);}}
+@keyframes mergeTileAni-4-3 {0% {transform: translate(257.5px, 378.75px) scale(0);} 100% {transform: translate(257.5px, 378.75px) scale(1);}}
+@keyframes mergeTileAni-4-4 {0% {transform: translate(378.75px, 378.75px) scale(0);} 100% {transform: translate(378.75px, 378.75px) scale(1);}}
+.tile.tile-new {animation-duration: .2s; animation-timing-function: ease-in;}
+.tile.tile-position-1-1.tile-new {animation-name: newTileAni-1-1;}
+.tile.tile-position-1-2.tile-new {animation-name: newTileAni-1-2;}
+.tile.tile-position-1-3.tile-new {animation-name: newTileAni-1-3;}
+.tile.tile-position-1-4.tile-new {animation-name: newTileAni-1-4;}
+.tile.tile-position-2-1.tile-new {animation-name: newTileAni-2-1;}
+.tile.tile-position-2-2.tile-new {animation-name: newTileAni-2-2;}
+.tile.tile-position-2-3.tile-new {animation-name: newTileAni-2-3;}
+.tile.tile-position-2-4.tile-new {animation-name: newTileAni-2-4;}
+.tile.tile-position-3-1.tile-new {animation-name: newTileAni-3-1;}
+.tile.tile-position-3-2.tile-new {animation-name: newTileAni-3-2;}
+.tile.tile-position-3-3.tile-new {animation-name: newTileAni-3-3;}
+.tile.tile-position-3-4.tile-new {animation-name: newTileAni-3-4;}
+.tile.tile-position-4-1.tile-new {animation-name: newTileAni-4-1;}
+.tile.tile-position-4-2.tile-new {animation-name: newTileAni-4-2;}
+.tile.tile-position-4-3.tile-new {animation-name: newTileAni-4-3;}
+.tile.tile-position-4-4.tile-new {animation-name: newTileAni-4-4;}
+@keyframes newTileAni-1-1 {0% {transform: translate(15px, 15px) scale(0);} 100% {transform: translate(15px, 15px) scale(1);}}
+@keyframes newTileAni-1-2 {0% {transform: translate(136.25px, 15px) scale(0);} 100% {transform: translate(136.25px, 15px) scale(1);}}
+@keyframes newTileAni-1-3 {0% {transform: translate(257.5px, 15px) scale(0);} 100% {transform: translate(257.5px, 15px) scale(1);}}
+@keyframes newTileAni-1-4 {0% {transform: translate(378.75px, 15px) scale(0);} 100% {transform: translate(378.75px, 15px) scale(1);}}
+@keyframes newTileAni-2-1 {0% {transform: translate(15px, 136.25px) scale(0);} 100% {transform: translate(15px, 136.25px) scale(1);}}
+@keyframes newTileAni-2-2 {0% {transform: translate(136.25px, 136.25px) scale(0);} 100% {transform: translate(136.25px, 136.25px) scale(1);}}
+@keyframes newTileAni-2-3 {0% {transform: translate(257.5px, 136.25px) scale(0);} 100% {transform: translate(257.5px, 136.25px) scale(1);}}
+@keyframes newTileAni-2-4 {0% {transform: translate(378.75px, 136.25px) scale(0);} 100% {transform: translate(378.75px, 136.25px) scale(1);}}
+@keyframes newTileAni-3-1 {0% {transform: translate(15px, 257.5px) scale(0);} 100% {transform: translate(15px, 257.5px) scale(1);}}
+@keyframes newTileAni-3-2 {0% {transform: translate(136.25px, 257.5px) scale(0);} 100% {transform: translate(136.25px, 257.5px) scale(1);}}
+@keyframes newTileAni-3-3 {0% {transform: translate(257.5px, 257.5px) scale(0);} 100% {transform: translate(257.5px, 257.5px) scale(1);}}
+@keyframes newTileAni-3-4 {0% {transform: translate(378.75px, 257.5px) scale(0);} 100% {transform: translate(378.75px, 257.5px) scale(1);}}
+@keyframes newTileAni-4-1 {0% {transform: translate(15px, 378.75px) scale(0);} 100% {transform: translate(15px, 378.75px) scale(1);}}
+@keyframes newTileAni-4-2 {0% {transform: translate(136.25px, 378.75px) scale(0);} 100% {transform: translate(136.25px, 378.75px) scale(1);}}
+@keyframes newTileAni-4-3 {0% {transform: translate(257.5px, 378.75px) scale(0);} 100% {transform: translate(257.5px, 378.75px) scale(1);}}
+@keyframes newTileAni-4-4 {0% {transform: translate(378.75px, 378.75px) scale(0);} 100% {transform: translate(378.75px, 378.75px) scale(1);}}
+.tile.tile-position-1-1 {transform: translate(15px, 15px);}
+.tile.tile-position-1-2 {transform: translate(136.25px, 15px);}
+.tile.tile-position-1-3 {transform: translate(257.5px, 15px);}
+.tile.tile-position-1-4 {transform: translate(378.75px, 15px);}
+.tile.tile-position-2-1 {transform: translate(15px, 136.25px);}
+.tile.tile-position-2-2 {transform: translate(136.25px, 136.25px);}
+.tile.tile-position-2-3 {transform: translate(257.5px, 136.25px);}
+.tile.tile-position-2-4 {transform: translate(378.75px, 136.25px);}
+.tile.tile-position-3-1 {transform: translate(15px, 257.5px);}
+.tile.tile-position-3-2 {transform: translate(136.25px, 257.5px);}
+.tile.tile-position-3-3 {transform: translate(257.5px, 257.5px);}
+.tile.tile-position-3-4 {transform: translate(378.75px, 257.5px);}
+.tile.tile-position-4-1 {transform: translate(15px, 378.75px);}
+.tile.tile-position-4-2 {transform: translate(136.25px, 378.75px);}
+.tile.tile-position-4-3 {transform: translate(257.5px, 378.75px);}
+.tile.tile-position-4-4 {transform: translate(378.75px, 378.75px);}
+.tile .tile-inner {
+  font-family: 'GongGothicMedium';
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 107px;
+  height: 107px;
+  border-radius: 3px;
+  font-weight: bold;
+  z-index: 10;
+  font-size: 45px;
+  box-shadow: 0 0 30px 10px rgb(243 215 116 / 0%), inset 0 0 0 1px rgb(255 255 255 / 0%);
+}
+.tile.tile-2 .tile-inner {background: #eee4da; color: #776e65;}
+.tile.tile-4 .tile-inner {background: #eee1c9; color: #776e65;}
+.tile.tile-8 .tile-inner {background: #f3b27a; color: #f9f6f2;}
+.tile.tile-16 .tile-inner {background: #f69664; color: #f9f6f2;}
+.tile.tile-32 .tile-inner {background: #f77c5f; color: #f9f6f2;}
+.tile.tile-64 .tile-inner {background: #f75f3b; color: #f9f6f2;}
+.tile.tile-128 .tile-inner {
+  background: #edd073; 
+  color: #f9f6f2;
+  box-shadow: 0 0 30px 10px rgb(243 215 116 / 24%), inset 0 0 0 1px rgb(255 255 255 / 14%);
+  font-size: 35px;
+}
+.tile.tile-256 .tile-inner {
+  background: #edcc62; 
+  color: #f9f6f2;
+  box-shadow: 0 0 30px 10px rgb(243 215 116 / 32%), inset 0 0 0 1px rgb(255 255 255 / 19%);
+  font-size: 35px;
+}
+.tile.tile-512 .tile-inner {
+  color: #f9f6f2;
+  background: #edc950;
+  box-shadow: 0 0 30px 10px rgb(243 215 116 / 40%), inset 0 0 0 1px rgb(255 255 255 / 24%);
+  font-size: 35px;
+}
+.tile.tile-1024 .tile-inner {
+  color: #f9f6f2;
+  background: #edc53f;
+  box-shadow: 0 0 30px 10px rgb(243 215 116 / 48%), inset 0 0 0 1px rgb(255 255 255 / 29%);
+  font-size: 25px;
+}
+.tile.tile-2048 .tile-inner {
+  color: #f9f6f2;
+  background: #edc22e;
+  box-shadow: 0 0 30px 10px rgb(243 215 116 / 56%), inset 0 0 0 1px rgb(255 255 255 / 33%);
+  font-size: 25px;
+}
