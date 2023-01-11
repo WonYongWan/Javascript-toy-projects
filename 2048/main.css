@@ -8,29 +8,121 @@
 body {background: #FAF8EF;}
 #basic-info {
   margin: 0 auto;
-  margin-top: 10vh;
+  margin-top: 5vh;
+  flex-wrap: wrap;
   display: flex;
   justify-content: space-between;
   width: 500px;
   margin-bottom: 20px;
 }
 #basic-info > h1 {font-family: 'GongGothicMedium'; font-size: 70px; font-weight: bold; color: #776e65;}
-#basic-info > #score-wrap {display: flex;}
+#basic-info > #score-wrap {display: flex; margin-left: auto;}
 #score-wrap > .score-box,
 #score-wrap > .best-box {
-  font-family: 'GongGothicMedium';
   position: relative;
-  display: block;
+  font-family: 'GongGothicMedium';
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   background: #bbada0;
-  padding: 15px 25px;
-  font-size: 25px;
-  font-weight: bold;
+  padding: 10px 25px;
   border-radius: 3px;
   color: white;
   text-align: center;
+  margin-left: 5px;
+}
+#score-wrap h2 {font-size: 14px; color: #eee4da;}
+#score-wrap p {font-size: 20px; font-weight: 600; letter-spacing: 1.5px;}
+#score-wrap > div > div {
+  opacity: 0;
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50% ,-20%);
+  color: rgba(119, 110, 101, 0.9);
+  font-size: 25px;
+  font-weight: 600;
+  animation-name: scoreAmi;
+  animation-duration: .7s; 
+  animation-timing-function: ease-in-out;
+}
+@keyframes scoreAmi {
+  0% {opacity: 0; transform: translate(-50% ,-20%);}
+  10% {opacity: 1; transform: translate(-50% ,-30%);}
+  70% {opacity: 1;}
+  100% {opacity: 0; transform: translate(-50% ,-450%);}
+}
+#reset-wrap {
+  width: 500px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+#reset-wrap > button {
+  background: #8f7a66;
+  border-radius: 3px;
+  padding: 0 20px;
+  font-size: 18px;
+  color: #f9f6f2;
+  height: 40px;
+  cursor: pointer;
+  display: block;
+  text-align: center;
+  border: unset;
+  outline: none;
 }
 #game-wrap {width: 500px; height: 500px; position: relative; margin: 0 auto;}
-#message {position: absolute;}
+.game-message {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  opacity: 1;
+  transition: 1.5s;
+}
+.game-message.none {
+  opacity: 0;
+  transition: 0s;
+  z-index: 0;
+}
+.gmae-over {
+  background: rgba(238, 228, 218, 0.73);
+}
+.gmae-over > p {
+  font-size: 60px;
+  font-weight: bold;
+  color: #776e65;
+  margin-bottom: 40px;
+}
+.gmae-over > button,
+.gmae-win > button {
+  background: #8f7a66;
+  border-radius: 3px;
+  padding: 0 20px;
+  font-size: 18px;
+  color: #f9f6f2;
+  height: 40px;
+  cursor: pointer;
+  display: block;
+  text-align: center;
+  border: unset;
+  outline: none;
+  margin-bottom: 40px;
+}
+.gmae-win {
+  background: rgba(237, 194, 46, 0.5);
+  color: #f9f6f2;
+}
+.gmae-win > p {
+  font-size: 60px;
+  font-weight: bold;
+  margin-bottom: 40px;
+}
 #grid-container {
   position: absolute;
   width: 500px;
@@ -44,8 +136,8 @@ body {background: #FAF8EF;}
 .row > .cell {width: 106.25px; height: 106.25px; border-radius: 3px; margin-right: 15px; background: rgba(238, 228, 218, 0.35);}
 .row > .cell:last-child {margin-right: 0;}
 #tile-container {position: absolute;} 
-.tile {position: absolute; width: 107px; height: 107px; transition: .1s;}
-.tile.tile-merged {animation-duration: .2s; animation-timing-function: ease-in-out;}
+.tile {position: absolute; width: 107px; height: 107px; transition: .15s;}
+.tile.tile-merged {animation-duration: .3s; animation-timing-function: ease-in-out;}
 .tile.tile-position-1-1.tile-merged {animation-name: mergeTileAni-1-1;}
 .tile.tile-position-1-2.tile-merged {animation-name: mergeTileAni-1-2;}
 .tile.tile-position-1-3.tile-merged {animation-name: mergeTileAni-1-3;}
@@ -63,21 +155,21 @@ body {background: #FAF8EF;}
 .tile.tile-position-4-3.tile-merged {animation-name: mergeTileAni-4-3;}
 .tile.tile-position-4-4.tile-merged {animation-name: mergeTileAni-4-4;}
 @keyframes mergeTileAni-1-1 {0% {transform: translate(15px, 15px) scale(1.2);} 100% {transform: translate(15px, 15px) scale(1);}}
-@keyframes mergeTileAni-1-2 {0% {transform: translate(136.25px, 15px) scale(0);} 100% {transform: translate(136.25px, 15px) scale(1);}}
-@keyframes mergeTileAni-1-3 {0% {transform: translate(257.5px, 15px) scale(0);} 100% {transform: translate(257.5px, 15px) scale(1);}}
-@keyframes mergeTileAni-1-4 {0% {transform: translate(378.75px, 15px) scale(0);} 100% {transform: translate(378.75px, 15px) scale(1);}}
-@keyframes mergeTileAni-2-1 {0% {transform: translate(15px, 136.25px) scale(0);} 100% {transform: translate(15px, 136.25px) scale(1);}}
-@keyframes mergeTileAni-2-2 {0% {transform: translate(136.25px, 136.25px) scale(0);} 100% {transform: translate(136.25px, 136.25px) scale(1);}}
-@keyframes mergeTileAni-2-3 {0% {transform: translate(257.5px, 136.25px) scale(0);} 100% {transform: translate(257.5px, 136.25px) scale(1);}}
-@keyframes mergeTileAni-2-4 {0% {transform: translate(378.75px, 136.25px) scale(0);} 100% {transform: translate(378.75px, 136.25px) scale(1);}}
-@keyframes mergeTileAni-3-1 {0% {transform: translate(15px, 257.5px) scale(0);} 100% {transform: translate(15px, 257.5px) scale(1);}}
-@keyframes mergeTileAni-3-2 {0% {transform: translate(136.25px, 257.5px) scale(0);} 100% {transform: translate(136.25px, 257.5px) scale(1);}}
-@keyframes mergeTileAni-3-3 {0% {transform: translate(257.5px, 257.5px) scale(0);} 100% {transform: translate(257.5px, 257.5px) scale(1);}}
-@keyframes mergeTileAni-3-4 {0% {transform: translate(378.75px, 257.5px) scale(0);} 100% {transform: translate(378.75px, 257.5px) scale(1);}}
-@keyframes mergeTileAni-4-1 {0% {transform: translate(15px, 378.75px) scale(0);} 100% {transform: translate(15px, 378.75px) scale(1);}}
-@keyframes mergeTileAni-4-2 {0% {transform: translate(136.25px, 378.75px) scale(0);} 100% {transform: translate(136.25px, 378.75px) scale(1);}}
-@keyframes mergeTileAni-4-3 {0% {transform: translate(257.5px, 378.75px) scale(0);} 100% {transform: translate(257.5px, 378.75px) scale(1);}}
-@keyframes mergeTileAni-4-4 {0% {transform: translate(378.75px, 378.75px) scale(0);} 100% {transform: translate(378.75px, 378.75px) scale(1);}}
+@keyframes mergeTileAni-1-2 {0% {transform: translate(136.25px, 15px) scale(1.2);} 100% {transform: translate(136.25px, 15px) scale(1);}}
+@keyframes mergeTileAni-1-3 {0% {transform: translate(257.5px, 15px) scale(1.2);} 100% {transform: translate(257.5px, 15px) scale(1);}}
+@keyframes mergeTileAni-1-4 {0% {transform: translate(378.75px, 15px) scale(1.2);} 100% {transform: translate(378.75px, 15px) scale(1);}}
+@keyframes mergeTileAni-2-1 {0% {transform: translate(15px, 136.25px) scale(1.2);} 100% {transform: translate(15px, 136.25px) scale(1);}}
+@keyframes mergeTileAni-2-2 {0% {transform: translate(136.25px, 136.25px) scale(1.2);} 100% {transform: translate(136.25px, 136.25px) scale(1);}}
+@keyframes mergeTileAni-2-3 {0% {transform: translate(257.5px, 136.25px) scale(1.2);} 100% {transform: translate(257.5px, 136.25px) scale(1);}}
+@keyframes mergeTileAni-2-4 {0% {transform: translate(378.75px, 136.25px) scale(1.2);} 100% {transform: translate(378.75px, 136.25px) scale(1);}}
+@keyframes mergeTileAni-3-1 {0% {transform: translate(15px, 257.5px) scale(1.2);} 100% {transform: translate(15px, 257.5px) scale(1);}}
+@keyframes mergeTileAni-3-2 {0% {transform: translate(136.25px, 257.5px) scale(1.2);} 100% {transform: translate(136.25px, 257.5px) scale(1);}}
+@keyframes mergeTileAni-3-3 {0% {transform: translate(257.5px, 257.5px) scale(1.2);} 100% {transform: translate(257.5px, 257.5px) scale(1);}}
+@keyframes mergeTileAni-3-4 {0% {transform: translate(378.75px, 257.5px) scale(1.2);} 100% {transform: translate(378.75px, 257.5px) scale(1);}}
+@keyframes mergeTileAni-4-1 {0% {transform: translate(15px, 378.75px) scale(1.2);} 100% {transform: translate(15px, 378.75px) scale(1);}}
+@keyframes mergeTileAni-4-2 {0% {transform: translate(136.25px, 378.75px) scale(1.2);} 100% {transform: translate(136.25px, 378.75px) scale(1);}}
+@keyframes mergeTileAni-4-3 {0% {transform: translate(257.5px, 378.75px) scale(1.2);} 100% {transform: translate(257.5px, 378.75px) scale(1);}}
+@keyframes mergeTileAni-4-4 {0% {transform: translate(378.75px, 378.75px) scale(1.2);} 100% {transform: translate(378.75px, 378.75px) scale(1);}}
 .tile.tile-new {animation-duration: .2s; animation-timing-function: ease-in;}
 .tile.tile-position-1-1.tile-new {animation-name: newTileAni-1-1;}
 .tile.tile-position-1-2.tile-new {animation-name: newTileAni-1-2;}
