@@ -18,33 +18,33 @@
 <br/>
 
 # 2048
-<center><a href="https://github.com/WonYongWan/Javascript-toy-projects-important/tree/master/2048" target="_blank"><img src="./images/2048.png" width="100%"/></a></center>
+<center><a href="https://github.com/WonYongWan/Javascript-toy-projects/tree/master/2048" target="_blank"><img src="./images/2048.png" width="100%"/></a></center>
 <br/>
 
 # 계산기
-<center><a href="https://github.com/WonYongWan/Javascript-toy-projects-important/tree/master/Calculator" target="_blank"><img src="./images/Calculator.png" width="100%"/></a></center>
+<center><a href="https://github.com/WonYongWan/Javascript-toy-projects/tree/master/Calculator" target="_blank"><img src="./images/Calculator.png" width="100%"/></a></center>
 <br/>
 
 # 숫자야구
-<center><a href="https://github.com/WonYongWan/Javascript-toy-projects-important/tree/master/NumberBaseball" target="_blank"><img src="./images/NumberBaseball.png" width="100%"/></a></center>
+<center><a href="https://github.com/WonYongWan/Javascript-toy-projects/tree/master/NumberBaseball" target="_blank"><img src="./images/NumberBaseball.png" width="100%"/></a></center>
 <br/>
 
 # 로또 추첨기
-<center><a href="https://github.com/WonYongWan/Javascript-toy-projects-important/tree/master/Lotto" target="_blank"><img src="./images/Lotto.png" width="100%"/></a></center>
+<center><a href="https://github.com/WonYongWan/Javascript-toy-projects/tree/master/Lotto" target="_blank"><img src="./images/Lotto.png" width="100%"/></a></center>
 <br/>
 
 # 가위 바위 보
-<center><a href="https://github.com/WonYongWan/Javascript-toy-projects-important/tree/master/RockPaperScissors" target="_blank"><img src="./images/RockPaperScissors.png" width="100%"/></a></center>
+<center><a href="https://github.com/WonYongWan/Javascript-toy-projects/tree/master/RockPaperScissors" target="_blank"><img src="./images/RockPaperScissors.png" width="100%"/></a></center>
 <br/>
 
 # 반응속도 체크
-<center><a href="https://github.com/WonYongWan/Javascript-toy-projects-important/tree/master/ResponsiveCheck" target="_blank"><img src="./images/ResponsiveCheck.png" width="100%"/></a></center>
+<center><a href="https://github.com/WonYongWan/Javascript-toy-projects/tree/master/ResponsiveCheck" target="_blank"><img src="./images/ResponsiveCheck.png" width="100%"/></a></center>
 <br/>
 
 # 카드 짝 맞추기
-<center><a href="https://github.com/WonYongWan/Javascript-toy-projects-important/tree/master/MatchCards" target="_blank"><img src="./images/MatchCards.png" width="100%"/></a></center>
+<center><a href="https://github.com/WonYongWan/Javascript-toy-projects/tree/master/MatchCards" target="_blank"><img src="./images/MatchCards.png" width="100%"/></a></center>
 <br/>
 
 # Todo List
-<center><a href="https://github.com/WonYongWan/Javascript-toy-projects-important/tree/master/TodoList" target="_blank"><img src="./images/TodoList.png" width="100%"/></a></center>
+<center><a href="https://github.com/WonYongWan/Javascript-toy-projects/tree/master/ToDoList" target="_blank"><img src="./images/TodoList.png" width="100%"/></a></center>
 <br/>
