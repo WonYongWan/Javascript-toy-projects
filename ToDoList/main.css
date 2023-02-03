@@ -30,9 +30,8 @@ input[type=text]::placeholder {
 header h1 {font-size: 80px; color: #EAD7D7; font-weight: 500; margin-bottom: 30px;}
 section > .new_todo {background: #fff; border-bottom: 1px solid #ededed; padding: 0 50px 0 70px; position: relative;}
 section > .new_todo > input {padding: 16px 0;}
-section > .new_todo::before {
+section > .new_todo > button {
   position: absolute;
-  content: '❯';
   font-size: 22px;
   color: #e6e6e6;
   left: 20px;
@@ -69,24 +68,22 @@ section > .new_todo::before {
   padding: 0 24px 0 70px; 
   border-bottom: 1px solid #ededed;
 }
-.item_list > .item::before {
-  content: "";
+.item_list > .item.none {display: none;}
+.item_list > .item > img {
   display: block;
   position: absolute;
   left: 7px;
   top: 50%;
   transform: translateY(-50%);
-  background: url("./images/check_img1.png") no-repeat center;
-  width: 40px;
-  height: 40px;
 }
-.item_list > .item.on::before {background: url("./images/check_img1.png") no-repeat center;}
 .item_list > .item > input {border: 1px solid #000; padding: 16px 10PX; display: none;}
 .item_list > .item > input.on {display: block;}
-.item_list > .item > p {width: 100%; font-size: 24px; line-height: 1.2; padding: 16px 0; word-break: break-all; display: none;}
+.item_list > .item > p {width: 100%; font-size: 24px; line-height: 1.2; padding: 16px 0; word-break: break-all; display: none; transition: .3s;}
+.item_list > .item > p.completed {color: #d9d9d9; text-decoration: line-through;}
 .item_list > .item > p.on {display: block;}
 .item_list > .item > p::-webkit-scrollbar {display: none;}
 .item_list > .item > button {
+  display: none;
   padding: 0; 
   font-weight: 700; 
   font-size: 20px; 
@@ -94,14 +91,13 @@ section > .new_todo::before {
   transition: color 0.2s ease-out;
   margin-left: 40px;
 }
-.item_list > .item > button:hover {
-  color: #c14040; 
-}
+.item_list > .item:hover > button {display: block;}
+.item_list > .item > button:hover {color: #c14040;}
 .item_info {display: flex; background: #fff; align-items: center; justify-content: space-between;}
 .item_info > div {padding: 10px 15px; font-size: 14px; color: #777;}
 .item_info > div > button {font-size: 14px; color: #777;}
-.item_info .item_Kinds > button {margin-left: 20px; border-radius: 3PX; border: 1px solid transparent; padding: 3px 7px;}
-.item_info .item_Kinds > button:hover {border-color: rgba(175, 47, 47, 0.1);}
-.item_info .item_Kinds > button.on {border-color: rgba(175, 47, 47, 0.2);}
-.item_info .item_Kinds > button:first-child {margin-left: 0;}
+.item_info .item_kinds > button {margin-left: 20px; border-radius: 3PX; border: 1px solid transparent; padding: 3px 7px;}
+.item_info .item_kinds > button:hover {border-color: rgba(175, 47, 47, 0.1);}
+.item_info .item_kinds > button.on {border-color: rgba(175, 47, 47, 0.2);}
+.item_info .item_kinds > button:first-child {margin-left: 0;}
 .item_info .item_clear > button:hover {text-decoration: underline;}

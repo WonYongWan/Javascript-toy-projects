@@ -15,19 +15,19 @@
       <h1>todo list</h1>
     </header>
     <section>
-      <div class="new_todo"><input id="new_todo" value="" type="text" spellcheck="false" placeholder="What needs to be done?"></div>
+      <div class="new_todo"><button>❯</button><input id="new_todo" value="" type="text" spellcheck="false" placeholder="What needs to be done?"></div>
       <div class="item_wrap">
-        <div class="item_list item_list_all">
-          <div class="item"><p>sadasasdas</p><input class="on" type="text"><button>X</button></div>
-          <div class="item"><p class="on">sadasasdas</p><input type="text"><button>X</button></div>
+        <div class="item_list">
+          <!-- <div class="item"><img src="./images/check_img1.png" alt=""><p>ㅁㅁㅁ</p><input class="on" type="text"><button>X</button></div> -->
+          <!-- <div class="item"><p class="on">ㅁㅁㅁ</p><input type="text"><button>X</button></div> -->
         </div>
       </div>
       <div class="item_info">
-        <div><p>2 items left</p></div>
-        <div class="item_Kinds">
-          <button class="on">All</button>
-          <button>Active</button>
-          <button>Completed</button>
+        <div class="itme_count"><p>0 items left</p></div>
+        <div class="item_kinds">
+          <button class="all on" onclick="listPagesTab('all')">All</button>
+          <button class="active" onclick="listPagesTab('active')">Active</button>
+          <button class="completed" onclick="listPagesTab('completed')">Completed</button>
         </div>
         <div class="item_clear"><button>Clear completed</button></div>
       </div>
