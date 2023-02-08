@@ -1,0 +1,33 @@
+body {background: #ebebeb; height: 100vh; display: flex; justify-content: center; align-items: center;}
+.carousel_wrap {position: relative; width: 1000px; height: 500px;}
+.carousel_wrap > .img_wrap {display: flex; overflow: hidden; border-radius: 30px; background: #121212; }
+.carousel_wrap > .img_wrap > div {
+  min-width: 1000px;
+  height: 500px; 
+  background: #121212; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center;
+  transition: .3s ease-in-out;
+}
+.carousel_wrap > .img_wrap > div > img {border-radius: 10px;}
+.carousel_wrap > button {
+  z-index: 9999;
+  top: 50%;
+  color: #fff;
+  transform: translateY(-50%);
+  position: absolute;
+  width: 50px;
+  height: 60px;
+  background: rgba(255, 255, 255, .2);
+  border: 0;
+  outline: none;
+  cursor: pointer;
+}
+.carousel_wrap > button.prev {left: 0; border-radius: 0 5px 5px 0;}
+.carousel_wrap > button.next {right: 0; border-radius: 5px 0 0 5px;}
+.carousel_wrap > .img_list_info {position: absolute; left: 50%; transform: translateX(-50%); bottom: 30px; display: flex; justify-content: center;}
+.carousel_wrap > .img_list_info > ul {height: 24px; display: flex; align-items: center;}
+.carousel_wrap > .img_list_info > ul > li {width: 15px; height: 15px; border-radius: 15px; background: rgba(255, 255, 255, .2); float: left; margin: 0 5px; cursor: pointer;}
+.carousel_wrap > .img_list_info > ul > li.on {background: #fff;}
+.carousel_wrap > .img_list_info > span {color: #fff; cursor: pointer; margin-left: 10px;}
