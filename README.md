@@ -12,6 +12,7 @@
 [카드 짝 맞추기](#카드-짝-맞추기)<br/>
 [Todo List](#todo-list)<br/>
 [캐러셀](#캐러셀)<br/>
+[페이지네이션](#페이지네이션)<br/>
 
 ---
 <br/>
@@ -52,4 +53,8 @@
 
 # 캐러셀
 <center><a href="https://github.com/WonYongWan/Javascript-toy-projects/tree/master/Carousel" target="_blank"><img src="./images/Carousel.png" width="100%"/></a></center>
+<br/>
+
+# 페이지네이션
+<center><a href="https://github.com/WonYongWan/Javascript-toy-projects/tree/master/Pagination" target="_blank"><img src="./images/Pagination.png" width="100%"/></a></center>
 <br/>
